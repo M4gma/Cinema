@@ -8,6 +8,7 @@ package br.ufla.sistemas.cinema;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,40 +36,26 @@ public class FXMLController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         //constroi filhos de menuGerenciar
         ObservableList<Node> mGChildren = menuGerenciar.getItems();
-        final Button Salas = new Button("Salas");
-        final BackgroundImage bc = new BackgroundImage(
-                new Image("/icons/cinema_room.png"), 
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(80,80,false,false,false,false)
+        ToolBarButton salas = new ToolBarButton(
+                "Salas",
+                new Image("/icons/cinema_room.png"),
+                new Image("/icons/cinema_room_active.png")
         );
-        final BackgroundImage bce = new BackgroundImage(
-                new Image("/icons/cinema_room_active.png"), 
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(80,80,false,false,false,false)
+        
+        ToolBarButton filmes = new ToolBarButton(
+                "Filmes",
+                new Image("/icons/filme.png"),
+                new Image("/icons/filme_active.png")
         );
-        Salas.setBackground(new Background(bc));
-        Salas.setPrefSize(130, 130);
-        Salas.setAlignment(Pos.BOTTOM_CENTER);
-        Salas.setOnMouseEntered(new EventHandler<MouseEvent>(){
-            
-            @Override
-            public void handle(MouseEvent t) {
-                Salas.setBackground(new Background(bce));
-            }
-            
-        });
-        Salas.setOnMouseExited(new EventHandler<MouseEvent>(){
-            
-            @Override
-            public void handle(MouseEvent t) {
-                Salas.setBackground(new Background(bc));
-            }
-            
-        });
-        mGChildren.add(Salas);
+        
+        ToolBarButton sessoes = new ToolBarButton(
+                "Sessões",
+                new Image("/icons/sessao.png"),
+                new Image("/icons/sessao_active.png")
+        );
+        
+        mGChildren.add(salas);
+        mGChildren.add(filmes);
+        mGChildren.add(sessoes);
     }
 }
