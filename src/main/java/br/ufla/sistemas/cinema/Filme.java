@@ -9,11 +9,13 @@ public class Filme {
     private String nome;
     private String sinopse;
     private String[] elenco;//principais atores do filme
+    private final int minutos;
 
-    public Filme(String nome, String sinopse, String[] elenco) {
+    public Filme(String nome, String sinopse, String[] elenco, int minutos) {
         this.nome = nome;
         this.sinopse = sinopse;
         this.elenco = elenco;
+        this.minutos = minutos;
     }
 
     public String getNome() {
@@ -31,6 +33,10 @@ public class Filme {
         }
         
         return elenco;
+    }
+
+    public int getMinutos() {
+        return minutos;
     }
     
     

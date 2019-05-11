@@ -14,12 +14,29 @@ public class Ingresso {
     private int id = totais;
     
     private Sessao sessao;
-    private Poltrona poltrona;
+    private Sala.Poltrona poltrona;
     
-    public Ingresso(Sessao sessao, Poltrona poltrona){
+    public Ingresso(Sessao sessao, Sala.Poltrona poltrona){
         totais++;
         
         this.sessao = sessao;
         this.poltrona = poltrona;
     }
+
+    public static int getTotais() {
+        return totais;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public Sala.Poltrona getPoltrona() {
+        return poltrona;
+    }
+    
 }

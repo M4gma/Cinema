@@ -5,37 +5,72 @@
  */
 package br.ufla.sistemas.cinema;
 
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Lúcio
  */
 public class Sala {
-    private int poltronas[];
+    private Fileira[] fileiras;
     private boolean ocupada = false;
     
-    public class Poltrona {
-        private char fileira;
-        private int assento;
-        private Sala sala;
+    public class Fileira{
+        private final char nome;
+        private final Poltrona[] poltronas;
+        
+        private Fileira(char nome, Poltrona[] poltronas){
+            this.nome = nome;
+            this.poltronas = poltronas;
+        }
+        
+        public int numDePoltronas(){
+            return poltronas.length;
+        }
 
-        private Poltrona(Sala sala, char fileira, int assento) {
-            this.fileira = fileira;
+        public char getNome() {
+            return nome;
+        }
+
+        public Poltrona getPoltrona(int assento) {
+            return poltronas[assento];
+        }
+    }
+    
+    public class Poltrona {
+        private final char fileiraNome;
+        private final int assento;
+        private final Sala sala;
+
+        private Poltrona(Sala sala, char fileiraNome, int assento) {
+            this.fileiraNome = fileiraNome;
             this.assento = assento;
             this.sala = sala;
         }
+        
+        public String getNome(){
+            return fileiraNome + Integer.toString(assento);
+        }
 
-        public char getFileira() {
+        public Fileira getFileira() {
+            Fileira fileira = null;
+            
+            try {
+                fileira = sala.getFileira(fileiraNome);
+            } catch (Throwable ex) {
+                Logger.getLogger(Sala.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             return fileira;
         }
 
-        public int getCadeira() {
-            return assento;
+        public char getFileiraNome() {
+            return fileiraNome;
         }
-    
-        public String getCodigo(){
-            return fileira + Integer.toString(assento);
+
+        public int getAssento() {
+            return assento;
         }
     
     }
@@ -43,29 +78,56 @@ public class Sala {
     public Sala(int[] poltronas) throws Throwable {
         Throwable ArrayInvalida = new Throwable("A array é invalida.");
         
-        if(poltronas.length > 0 && poltronas.length <= 26/*número de letras do alfabeto*/){            
+        if(poltronas.length > 0 && poltronas.length <= 25/*número de letras do alfabeto - 1*/){
+            fileiras = new Fileira[poltronas.length];
+            
             for(int i = 0; i < poltronas.length; i++){
                 if(poltronas[i] <= 0) throw ArrayInvalida;
+                else{
+                    
+                    Poltrona[] fileira = new Poltrona[poltronas[i]];
+                    
+                    for(int j = 0; j < poltronas[i]; j++){
+                        fileira[j] = new Poltrona(this, (char)('A' + i), j);
+                    }
+                    
+                    fileiras[i] = new Fileira((char)('A' + i), fileira);
+                }
             }
-            
-            this.poltronas = poltronas;
+            this.fileiras = fileiras;
         } else {
             throw ArrayInvalida;
         }
     }
-    
-    Poltrona getPoltrona(char fileira, int assento) throws Throwable{
-        Throwable PoltronaInvalida = new Throwable("Não existe esta poltrona na sala");
-        if((fileira - 'A') > poltronas.length || fileira < 'A'){
-            throw PoltronaInvalida;
-        }
-        
-        int numeroAssentos = poltronas[fileira - 'A'];
-        
-        if(numeroAssentos < assento){
-            throw PoltronaInvalida;
-        }
-        
-        return new Poltrona(this, fileira, assento);        
+
+    public Fileira[] getFileiras() {
+        return fileiras;
     }
+    
+    public Fileira getFileira(char nome) throws Throwable{
+        int idx = nome - 'A';
+        if(idx < 0 || idx > 25/*número de letras do alfabeto - 1*/){
+            throw new Throwable("Valor de nome inválido.");
+        }
+        
+        return fileiras[idx];
+    }
+
+    public boolean isOcupada() {
+        return ocupada;
+    }
+    
+    public int numDeFileiras(){
+        return fileiras.length;
+    }
+    
+    public int numDePoltronas(){
+        int cont = 0;
+        for(int i = 0; i < fileiras.length; i++){
+            cont += fileiras[i].numDePoltronas();
+        }
+        
+        return cont;
+    }
+    
 }

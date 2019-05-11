@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language JavaScript?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufla.sistemas.cinema.FXMLController">
+    <children>
+        <TabPane tabClosingPolicy="unavailable" side="left" prefHeight="160" >
+            <Tab text="Gerenciar" >
+                <content>
+                    <ToolBar fx:id="menuGerenciar" prefHeight="160">
+                    </ToolBar>
+                </content>
+            </Tab>
+            <Tab text="Vender">
+                <content>
+                    <ToolBar prefHeight="160" >
+                        
+                    </ToolBar>
+                </content>
+            </Tab>
+        </TabPane>
+    </children>
+</VBox>
