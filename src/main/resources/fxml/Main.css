@@ -1,4 +1,5 @@
-.Menu{
-    -fx-alignment: BOTTOM_LEFT;
-    visibility: hidden;
+#painelFim{
+    -fx-background-color: #dae0e5;
+    -fx-padding: 5;
+    -fx-alignment: center;
 }

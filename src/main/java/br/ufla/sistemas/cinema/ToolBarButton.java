@@ -31,17 +31,18 @@ public class ToolBarButton extends Button{
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
-                new BackgroundSize(80,80,false,false,false,false)
+                new BackgroundSize(60,60,false,false,false,false)
         );
         bca = new BackgroundImage(
                 backgroundActive, 
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
-                new BackgroundSize(80,80,false,false,false,false)
+                new BackgroundSize(60,60,false,false,false,false)
         );
         setBackground(new Background(bc));
-        setPrefSize(130, 130);
+        setPrefSize(110, 110);
+        setTranslateY(-8);
         setAlignment(Pos.BOTTOM_CENTER);
         setStyle("-fx-font-weight: bold;");
         

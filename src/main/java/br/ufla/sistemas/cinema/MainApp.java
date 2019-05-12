@@ -24,6 +24,9 @@ public class MainApp extends Application {
         
         stage.setTitle("Cinema");
         stage.setScene(scene);
+        stage.setMinWidth(900);
+        stage.setMinHeight(600);
+        stage.setMaximized(true);
         stage.show();
     }
 
