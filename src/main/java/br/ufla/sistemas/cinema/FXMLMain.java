@@ -97,7 +97,7 @@ public class FXMLMain implements Initializable{
         mGChildren.add(salas);
         mGChildren.add(filmes);
         mGChildren.add(sessoes);
-    
+        mGChildren.add(produtos);
         //constrói filhos de menuVender
         ObservableList<Node> mVChildren = menuVender.getItems();
         
