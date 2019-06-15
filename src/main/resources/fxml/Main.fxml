@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.control.*?>
 
@@ -22,7 +22,7 @@
                 </content>
             </Tab>
         </TabPane>
-        <Pane VBox.vgrow="always" />
+        <AnchorPane VBox.vgrow="always" fx:id="embedder" />
         <HBox fx:id="painelFim">
             <Label fx:id="log" text="Logger... (remover mensagem inicial depois)"/>
             <Pane VBox.vgrow="always" HBox.hgrow="always" />

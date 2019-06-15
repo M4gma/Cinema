@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+
+<VBox fx:controller="br.ufla.sistemas.cinema.FXMLGerenciarProdutos" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="50.0" style="-fx-background-color: #dae0e5;">
+         <children>
+            <HBox>
+               <children>
+                  <Label text="Inserir: " />
+                  <MenuButton mnemonicParsing="false" text="Lanche">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Bebida" />
+                      <MenuItem mnemonicParsing="false" text="Produto" />
+                    </items>
+                  </MenuButton>
+                  <Button mnemonicParsing="false" text="+" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <TableView VBox.vgrow="always">
+        <columns>
+          <TableColumn text="Nome" />
+          <TableColumn text="Preço" />
+            <TableColumn text="Gramas" />
+            <TableColumn text="Calorias" />
+            <TableColumn text="Litros" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
