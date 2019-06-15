@@ -21,7 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -36,7 +36,7 @@ public class FXMLMain implements Initializable{
     private ToolBar menuVender;
     
     @FXML
-    private Pane embedder;
+    private AnchorPane embedder;
     
     public void initialize(URL url, ResourceBundle rb) {
         EventHandler<ActionEvent> nadaImplPopup = new EventHandler<ActionEvent>(){
