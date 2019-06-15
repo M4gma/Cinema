@@ -5,18 +5,24 @@
  */
 package br.ufla.sistemas.cinema;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -28,6 +34,9 @@ public class FXMLMain implements Initializable{
     
     @FXML
     private ToolBar menuVender;
+    
+    @FXML
+    private Pane embedder;
     
     public void initialize(URL url, ResourceBundle rb) {
         EventHandler<ActionEvent> nadaImplPopup = new EventHandler<ActionEvent>(){
@@ -70,40 +79,34 @@ public class FXMLMain implements Initializable{
                 new Image("/icons/produtos.png"),
                 new Image("/icons/produtos_active.png")
         );
-        produtos.setOnAction(nadaImplPopup);
-        
-        ToolBarButton funcionarios = new ToolBarButton(
-                "Funcionários",
-                new Image("/icons/funcionarios.png"),
-                new Image("/icons/funcionarios_active.png")
-        );
-        funcionarios.setOnAction(nadaImplPopup);
-        funcionarios.setPrefWidth(funcionarios.getPrefWidth() + 20);
-        
+        produtos.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent t) {
+                while(embedder.getChildren().isEmpty() == false){
+                    embedder.getChildren().remove(0);
+                }
+                    
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GerenciarProdutos.fxml"));
+                try {
+                    embedder.getChildren().add((VBox)loader.load());
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLMain.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        });   
         mGChildren.add(salas);
         mGChildren.add(filmes);
         mGChildren.add(sessoes);
-        mGChildren.add(produtos);
-        mGChildren.add(funcionarios);
-        
+    
         //constrói filhos de menuVender
         ObservableList<Node> mVChildren = menuVender.getItems();
         
-        ToolBarButton ingressos = new ToolBarButton(
-                "Ingressos",
-                new Image("/icons/ticket.png"),
-                new Image("/icons/ticket_active.png")
-        );
-        ingressos.setOnAction(nadaImplPopup);
-        
-        ToolBarButton vendaProdutos = new ToolBarButton(
-                "Produtos",
+        ToolBarButton caixa = new ToolBarButton(
+                "Caixa",
                 new Image("/icons/produtos.png"),
                 new Image("/icons/produtos_active.png")
         );
-        vendaProdutos.setOnAction(nadaImplPopup);
-        
-        mVChildren.add(ingressos);
-        mVChildren.add(vendaProdutos);
+        caixa.setOnAction(nadaImplPopup);
+        mVChildren.add(caixa);
     }
 }
