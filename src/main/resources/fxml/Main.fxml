@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.control.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Main.css" prefHeight="400.0" prefWidth="600.0" fx:controller="br.ufla.sistemas.cinema.FXMLMain">
+<VBox fx:id="GerenciarProdutos" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@Main.css" fx:controller="br.ufla.sistemas.cinema.FXMLMain">
     <children>
         <TabPane tabClosingPolicy="unavailable" >
             <Tab text="Gerenciar">
@@ -24,7 +24,7 @@
         </TabPane>
         <AnchorPane VBox.vgrow="always" fx:id="embedder" />
         <HBox fx:id="painelFim">
-            <Label fx:id="log" text="Logger... (remover mensagem inicial depois)"/>
+            <Label fx:id="log" text=""/>
             <Pane VBox.vgrow="always" HBox.hgrow="always" />
             <Button fx:id="Salvar" text="Salvar" />
         </HBox>

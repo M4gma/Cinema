@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -38,7 +39,22 @@ public class FXMLMain implements Initializable{
     @FXML
     private AnchorPane embedder;
     
+    @FXML
+    private Label log;
+    private static Label log_ = null;
+
+    private ToolBarButton lastMGBtClicked = null;
+    private ToolBarButton lastMVBtClicked = null;
+    
+    public static void setLogMsg(String msg){
+        if(log_ != null){
+            log_.setText(msg);
+        }
+    }
+    
     public void initialize(URL url, ResourceBundle rb) {
+        log_ = log;
+        
         EventHandler<ActionEvent> nadaImplPopup = new EventHandler<ActionEvent>(){
             public void handle(ActionEvent t) {
                 Alert alert = new Alert(AlertType.INFORMATION);
@@ -74,22 +90,26 @@ public class FXMLMain implements Initializable{
         );
         sessoes.setOnAction(nadaImplPopup);
         
-        ToolBarButton produtos = new ToolBarButton(
+        final ToolBarButton produtos = new ToolBarButton(
                 "Produtos",
                 new Image("/icons/produtos.png"),
                 new Image("/icons/produtos_active.png")
         );
         produtos.setOnAction(new EventHandler<ActionEvent>(){
             public void handle(ActionEvent t) {
-                while(embedder.getChildren().isEmpty() == false){
-                    embedder.getChildren().remove(0);
-                }
-                    
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GerenciarProdutos.fxml"));
-                try {
-                    embedder.getChildren().add((VBox)loader.load());
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLMain.class.getName()).log(Level.SEVERE, null, ex);
+                if (lastMGBtClicked != produtos){
+                    while(embedder.getChildren().isEmpty() == false){
+                        embedder.getChildren().remove(0);
+                    }
+                
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GerenciarProdutos.fxml"));
+                    try {
+                        embedder.getChildren().add((VBox)loader.load());
+                        lastMGBtClicked = produtos;
+                    } catch (IOException ex) {
+                        setLogMsg("Erro ao carregar o módulo GerenciarProdutos.fxml");
+                        Logger.getLogger(FXMLMain.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
             

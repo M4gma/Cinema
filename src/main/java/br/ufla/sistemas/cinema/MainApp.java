@@ -10,10 +10,6 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
     
-    private void teste(){
-        System.out.println("Teste");
-    }
-    
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
@@ -25,7 +21,7 @@ public class MainApp extends Application {
         stage.setTitle("Cinema");
         stage.setScene(scene);
         stage.setMinWidth(900);
-        stage.setMinHeight(600);
+        stage.setMinHeight(700);
         stage.setMaximized(true);
         stage.show();
     }

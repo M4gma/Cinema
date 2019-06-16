@@ -11,11 +11,11 @@ package br.ufla.sistemas.cinema.classesBase;
  */
 public class Produto {
     private String nome;
-    private int preco;
-    private int peso;
+    private float preco;
+    private float peso;
     private String unidadePeso;
 
-    public Produto(String nome, int preco, int gramas) {
+    public Produto(String nome, float preco, float gramas) {
         this.nome = nome;
         this.preco = preco;
         this.peso = gramas;
@@ -23,7 +23,7 @@ public class Produto {
         if(gramas < 1000)
             this.unidadePeso = "g";
         else{
-            this.peso /= 1000;
+            this.peso /= 1000.0;
             this.unidadePeso = "kg";
         }
     }
@@ -40,11 +40,11 @@ public class Produto {
         return nome;
     }
 
-    public int getPreco() {
+    public float getPreco() {
         return preco;
     }
 
-    public int getPeso() {
+    public float getPeso() {
         return peso;
     }
 

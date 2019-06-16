@@ -13,7 +13,7 @@ public class Bebida extends Lanche{
     private float volume;
     private String unidadeVolume;
 
-    public Bebida(String nome, int preco, int gramas, float calorias, float litros) {
+    public Bebida(String nome, float preco, float gramas, float calorias, float litros) {
         super(nome, preco, gramas, calorias);
         
         if(litros < 1.0){

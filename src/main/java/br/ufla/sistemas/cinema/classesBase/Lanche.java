@@ -12,7 +12,7 @@ package br.ufla.sistemas.cinema.classesBase;
 public class Lanche extends Produto{
     private float calorias;
 
-    public Lanche(String nome, int preco, int gramas, float calorias) {
+    public Lanche(String nome, float preco, float gramas, float calorias) {
         super(nome, preco, gramas);
         this.calorias = calorias;
     }

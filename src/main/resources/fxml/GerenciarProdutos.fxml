@@ -4,32 +4,28 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-
-<VBox fx:controller="br.ufla.sistemas.cinema.FXMLGerenciarProdutos" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufla.sistemas.cinema.FXMLGerenciarProdutos">
    <children>
-      <Pane prefHeight="50.0" style="-fx-background-color: #dae0e5;">
+      <HBox alignment="CENTER_LEFT" style="-fx-background-color: #c8cdce; -fx-padding: 5;">
          <children>
-            <HBox>
-               <children>
-                  <Label text="Inserir: " />
-                  <MenuButton mnemonicParsing="false" text="Lanche">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Bebida" />
-                      <MenuItem mnemonicParsing="false" text="Produto" />
-                    </items>
-                  </MenuButton>
-                  <Button mnemonicParsing="false" text="+" />
-               </children>
-            </HBox>
+            <MenuButton fx:id="menuInserir" mnemonicParsing="false" text="Inserir Produto">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Lanche" />
+                <MenuItem mnemonicParsing="false" text="Bebida" />
+                <MenuItem mnemonicParsing="false" text="Outro" />
+              </items>
+            </MenuButton>
+            <HBox fx:id="insersor" alignment="CENTER" VBox.vgrow="always" HBox.hgrow="ALWAYS" style="-fx-padding: 0 10 0 10;" />
+            <Button fx:id="inserir" disable="true" mnemonicParsing="false" text="+" />
          </children>
-      </Pane>
-      <TableView VBox.vgrow="always">
+      </HBox>
+      <TableView fx:id="tabela" VBox.vgrow="always">
         <columns>
-          <TableColumn text="Nome" />
-          <TableColumn text="Preço" />
-            <TableColumn text="Gramas" />
-            <TableColumn text="Calorias" />
-            <TableColumn text="Litros" />
+            <TableColumn fx:id="colNome" text="Nome" prefWidth="200" />
+            <TableColumn fx:id="colPreco" text="Preço" prefWidth="130"/>
+            <TableColumn fx:id="colGramas" text="Gramas" prefWidth="130"/>
+            <TableColumn fx:id="colCalorias" text="Calorias" prefWidth="130"/>
+            <TableColumn fx:id="colLitros" text="Litros" prefWidth="130"/>
         </columns>
       </TableView>
    </children>
